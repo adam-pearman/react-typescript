@@ -1,16 +1,19 @@
-import Todo from '../models/todo'
+import { useContext } from 'react'
 import TodoItem from './TodoItem'
+import classes from './Todos.module.css'
+import { TodosContext } from '../store/todos-context'
 
-type AppProps = {
-  items: Todo[]
-  children?: React.ReactNode
-}
+const Todos = () => {
+  const todosContext = useContext(TodosContext)
 
-const Todos = (props: AppProps) => {
   return (
-    <ul>
-      {props.items.map((item) => (
-        <TodoItem key={item.id} text={item.text} />
+    <ul className={classes.todos}>
+      {todosContext.items.map((item) => (
+        <TodoItem
+          key={item.id}
+          text={item.text}
+          onRemoveTodo={() => todosContext.removeTodo(item.id)}
+        />
       ))}
     </ul>
   )
