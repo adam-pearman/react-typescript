@@ -1,15 +1,16 @@
-import { ReactNode } from 'react'
+import Todo from '../models/todo'
+import TodoItem from './TodoItem'
 
 type AppProps = {
-  items: string[]
-  children?: ReactNode
+  items: Todo[]
+  children?: React.ReactNode
 }
 
 const Todos = (props: AppProps) => {
   return (
     <ul>
       {props.items.map((item) => (
-        <li key={item}>{item}</li>
+        <TodoItem key={item.id} text={item.text} />
       ))}
     </ul>
   )
